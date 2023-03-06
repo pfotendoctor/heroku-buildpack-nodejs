@@ -57,6 +57,8 @@ source "$BP_DIR/lib/features.sh"
 source "$BP_DIR/lib/builddata.sh"
 # shellcheck source=lib/yarn-2.sh
 source "$BP_DIR/lib/yarn-2.sh"
+# shellcheck source=lib/turbo.sh
+source "$BP_DIR/lib/turbo.sh"
 
 export PATH="$BUILD_DIR/.heroku/node/bin:$BUILD_DIR/.heroku/yarn/bin":$PATH
 
@@ -250,6 +252,8 @@ install_bins() {
 header "Installing binaries" | output "$LOG_FILE"
 install_bins | output "$LOG_FILE"
 
+turbo_setup
+
 if [[ -z "$USE_NPM_INSTALL" ]]; then
   if [[ "$(should_use_npm_ci "$BUILD_DIR")" == "true" ]]; then
     USE_NPM_INSTALL=false
@@ -312,12 +316,6 @@ restore_cache | output "$LOG_FILE"
 
 build_dependencies() {
   local cache_status start
-
-
-  ## turbo
-
-  monitor "install turbo" "npm install --global turbo"
-  monitor "turbo prune" turbo prune --scope==tp-backend
 
   cache_status="$(get_cache_status "$CACHE_DIR")"
   start=$(nowms)
