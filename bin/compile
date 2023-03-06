@@ -23,9 +23,9 @@ cd out
 
 ### Configure directories
 
-BUILD_DIR=${1:-}
-CACHE_DIR=${2:-}
-ENV_DIR=${3:-}
+BUILD_DIR="out"
+CACHE_DIR="out"
+ENV_DIR="out"
 BP_DIR=$(cd "$(dirname "${0:-}")"; cd ..; pwd)
 
 ### Load dependencies
@@ -69,6 +69,16 @@ LOG_FILE=$(mktemp -t node-build-log.XXXXX)
 echo "" > "$LOG_FILE"
 
 build_start_time=$(nowms)
+
+
+### Turbo Repo Setup
+
+output "Turbo Setup"
+
+yarn turbo prune --scope==tp-backend
+cd out
+
+output "current dir... $PWD"
 
 ### Handle errors
 
