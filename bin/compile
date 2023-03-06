@@ -15,10 +15,6 @@ unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
 # shellcheck disable=SC2034
 BPLOG_PREFIX="buildpack.nodejs"
 
-## turbo
-
-monitor "install turbo" "npm install --global turbo"
-monitor "turbo prune" turbo prune --scope==tp-backend
 
 ### Configure directories
 
@@ -68,6 +64,12 @@ LOG_FILE=$(mktemp -t node-build-log.XXXXX)
 echo "" > "$LOG_FILE"
 
 build_start_time=$(nowms)
+
+
+## turbo
+
+monitor "install turbo" "npm install --global turbo"
+monitor "turbo prune" turbo prune --scope==tp-backend
 
 ### Handle errors
 
