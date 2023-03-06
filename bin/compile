@@ -9,6 +9,12 @@ unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
 
 [ "$BUILDPACK_XTRACE" ] && set -o xtrace
 
+
+### Turbo Repo Setup
+
+yarn turbo prune --scope==tp-backend
+cd out
+
 ### Constants
 
 # This is used by the buildpack stdlib for metrics
