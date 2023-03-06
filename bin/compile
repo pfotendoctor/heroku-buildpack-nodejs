@@ -15,6 +15,12 @@ unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
 # shellcheck disable=SC2034
 BPLOG_PREFIX="buildpack.nodejs"
 
+### Turbo
+echo "-----> Turbo is enabled"
+
+npx turbo prune --scope=tp-backend
+cd out
+
 ### Configure directories
 
 BUILD_DIR=${1:-}
