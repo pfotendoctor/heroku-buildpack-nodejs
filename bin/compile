@@ -12,8 +12,12 @@ unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
 
 ### Turbo Repo Setup
 
+output "Turbo Setup"
+
 yarn turbo prune --scope==tp-backend
 cd out
+
+output "current dir... $PWD"
 
 ### Constants
 
