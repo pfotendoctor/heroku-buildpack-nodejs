@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 
-install_turbo {
+install_turbo() {
   monitor "install turbo" "npm install --global turbo"
-
 }
 
-prune {
+prune() {
   monitor "turbo prune" turbo prune --scope==tp-backend
 }
 
