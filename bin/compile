@@ -405,7 +405,7 @@ meta_set "build-step" "install-metrics-plugin"
 output "installing turbo"
 cd $BUILD_DIR
 yarn add -W turbo
-yarn turbo prune --scope=web
+yarn turbo prune --scope=tp-backend
 mv out "$STAGE_DIR"
 
 rm -rf packages apps backends
