@@ -18,9 +18,9 @@ BPLOG_PREFIX="buildpack.nodejs"
 
 ### Configure directories
 
-BUILD_DIR="out"
-CACHE_DIR="out"
-ENV_DIR="out"
+BUILD_DIR="$1"
+CACHE_DIR="$2"
+ENV_DIR="$3"
 BP_DIR=$(cd "$(dirname "${0:-}")"; cd ..; pwd)
 
 ### Load dependencies
@@ -57,8 +57,6 @@ source "$BP_DIR/lib/features.sh"
 source "$BP_DIR/lib/builddata.sh"
 # shellcheck source=lib/yarn-2.sh
 source "$BP_DIR/lib/yarn-2.sh"
-# shellcheck source=lib/turbo.sh
-source "$BP_DIR/lib/turbo.sh"
 
 export PATH="$BUILD_DIR/.heroku/node/bin:$BUILD_DIR/.heroku/yarn/bin":$PATH
 
@@ -251,8 +249,6 @@ install_bins() {
 
 header "Installing binaries" | output "$LOG_FILE"
 install_bins | output "$LOG_FILE"
-
-turbo_setup
 
 if [[ -z "$USE_NPM_INSTALL" ]]; then
   if [[ "$(should_use_npm_ci "$BUILD_DIR")" == "true" ]]; then
