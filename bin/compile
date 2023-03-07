@@ -407,6 +407,7 @@ cd $BUILD_DIR
 yarn add -W turbo
 yarn turbo prune --scope=web
 mv out "$STAGE_DIR"
+mv .heroku "$STAGE_DIR/.heroku"
 cd ..
 rm -rf "$BUILD_DIR"
 mv "$STAGE_DIR" "$BUILD_DIR"
