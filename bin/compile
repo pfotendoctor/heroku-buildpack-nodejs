@@ -409,7 +409,9 @@ yarn turbo prune --scope=web
 mv out "$STAGE_DIR"
 mv .heroku "$STAGE_DIR/.heroku"
 cd ..
-rm -rf "$BUILD_DIR"
+ls -al "$BUILD_DIR"
+echo "<<<<<<<<"
+ls -al "$STAGE_DIR"
 mv "$STAGE_DIR" "$BUILD_DIR"
 
 meta_set "build-step" "summarize"
