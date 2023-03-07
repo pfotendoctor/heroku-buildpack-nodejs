@@ -401,7 +401,8 @@ summarize_build() {
 }
 
 meta_set "build-step" "install-metrics-plugin"
-node -v
+output "installing turbo"
+yarn global add turbo
 
 meta_set "build-step" "summarize"
 header "Build succeeded!" | output "$LOG_FILE"
