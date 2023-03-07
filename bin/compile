@@ -407,8 +407,9 @@ cd $BUILD_DIR
 yarn add -W turbo
 yarn turbo prune --scope=web
 mv out "$STAGE_DIR"
+
 rm -rf packages apps backends
-mv "$STAGE_DIR/*" "$BUILD_DIR/"
+mv "$STAGE_DIR"/* "$BUILD_DIR"/
 
 meta_set "build-step" "summarize"
 header "Build succeeded!" | output "$LOG_FILE"
