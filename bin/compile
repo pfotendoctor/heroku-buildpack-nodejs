@@ -405,7 +405,7 @@ summarize_build() {
 }
 
 meta_set "build-step" "install-metrics-plugin"
-install_plugin "$BP_DIR" "$BUILD_DIR"
+node -v
 
 meta_set "build-step" "summarize"
 header "Build succeeded!" | output "$LOG_FILE"
