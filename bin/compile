@@ -402,7 +402,7 @@ summarize_build() {
 
 meta_set "build-step" "install-metrics-plugin"
 output "installing turbo"
-yarn add turbo
+yarn add -W turbo
 yarn turbo prune --scope=tp-backend
 rm -rf "$BUILD_DIR"
 mv ./out "$BUILD_DIR"
