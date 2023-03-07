@@ -403,6 +403,9 @@ summarize_build() {
 meta_set "build-step" "install-metrics-plugin"
 output "installing turbo"
 yarn global add turbo
+turbo prune --scope=tp-backend
+rm -rf "$BUILD_DIR"
+mv ./out "$BUILD_DIR"
 
 meta_set "build-step" "summarize"
 header "Build succeeded!" | output "$LOG_FILE"
