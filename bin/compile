@@ -21,6 +21,7 @@ BPLOG_PREFIX="buildpack.nodejs"
 BUILD_DIR="$1"
 CACHE_DIR="$2"
 ENV_DIR="$3"
+STAGE="$(mktemp -d)"
 BP_DIR=$(cd "$(dirname "${0:-}")"; cd ..; pwd)
 
 ### Load dependencies
@@ -402,10 +403,13 @@ summarize_build() {
 
 meta_set "build-step" "install-metrics-plugin"
 output "installing turbo"
+cd $BUILD_DIR
 yarn add -W turbo
 yarn turbo prune --scope=tp-backend
+mv out "$STAGING_DIR"
+cd ..
 rm -rf "$BUILD_DIR"
-mv ./out "$BUILD_DIR"
+mv "$STAGING_DIR" "$BUILD_DIR"
 
 meta_set "build-step" "summarize"
 header "Build succeeded!" | output "$LOG_FILE"
